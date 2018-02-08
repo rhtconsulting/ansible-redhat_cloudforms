@@ -1,0 +1,58 @@
+---
+
+- name: CFME | Configure noop for RHEL VMs on VMware
+  hosts: cfme
+  become: True
+  gather_facts: True
+  tasks:
+
+    - name: Configure grub to use noop on RHEL 7.
+      block:
+     
+      - name: Read in existing grub configuration.
+        slurp:
+          src: /etc/default/grub
+        register: original_grub2_config
+
+      - name: Configure noop for all devices at boot time on RHEL 7 VMs
+        lineinfile:
+          dest: /etc/default/grub
+          regexp: '^GRUB_CMDLINE_LINUX="(.*)"'
+          line: 'GRUB_CMDLINE_LINUX="\1 elevator=noop"'
+          state: present
+          backrefs: True
+          backup: True
+        when:
+          - "not original_grub2_config['content'] | b64decode | regex_search('(elevator=noop)')"
+        register: grub2_changed
+
+      - name: Rebuild the /boot/grub2/grub.cfg
+        command: /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg
+        when:  grub2_changed|changed
+
+      when:
+        - ansible_distribution == "RedHat"
+        - ansible_distribution_major_version == "7"
+
+    - name: Configure grub to use noop on RHEL 4/5/6.
+      block:
+
+      - name: Read in existing grub configuration.
+        slurp:
+          src: /etc/grub.cfg
+        register: original_grub_config
+      
+      - name: Configure noop for all devices at boot time on RHEL 4/5/6 VMs
+        lineinfile:
+          dest: /etc/grub.cfg
+          regexp: '^kernel(.*)'
+          line: 'kernel \1 elevator=noop'
+          state: present
+          backrefs: True
+          backup: True
+        when:
+          - "not original_grub_config['content'] | b64decode | regex_search('(elevator=noop)')"
+      
+      when:
+        - ansible_distribution == "RedHat"
+        - ansible_distribution_major_version | int < 7
