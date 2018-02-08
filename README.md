@@ -12,7 +12,13 @@ Performs a migration from CFME 5.7 to 5.8 utilizing steps from [Migrating to Red
 * Disks have already been resized.
 * Environments are not utilizing database replication.
 
+#### Additionaly required playbooks
+* cfme-repositories.yml
+
 #### Required groups
 * cfme
 * cfme-appliancees
 * cfme-databases
+
+### cfme-repositories.yml
+Disables all currently configured repositories and enables the required playbooks from migrate-5.7-to-5.8.yml.
