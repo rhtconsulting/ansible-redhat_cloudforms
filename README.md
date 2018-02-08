@@ -22,3 +22,9 @@ Performs a migration from CFME 5.7 to 5.8 utilizing steps from [Migrating to Red
 
 ### cfme-repositories.yml
 Disables all currently configured repositories and enables the required playbooks from migrate-5.7-to-5.8.yml.
+
+### configure_noop_vmware_rhel_vms.yml
+Configures noop for the queue scheduler for RHEL VMs on VMware infrastructure per [How to use the Noop IO Scheduler](https://access.redhat.com/solutions/109223).
+
+#### Required group
+* cfme
