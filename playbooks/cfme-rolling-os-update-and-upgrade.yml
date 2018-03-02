@@ -53,3 +53,13 @@
       service:
         name: rh-postgresql95-postgresql
         state: started
+
+- name: CFME | OS Update and Upgrade | Start evmserverd
+  hosts: cfme-appliances
+  become: True
+  gather_facts: False
+  tasks:
+    - name: CFME | OS Update and Upgrade | Start evmserverd
+      service:
+        name: evmserverd
+        state: started
