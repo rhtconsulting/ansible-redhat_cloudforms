@@ -4,17 +4,7 @@
   gather_facts: True
   tasks:
     - name: CFME | OS Update and Upgrade | Repositories
-      include_tasks: tasks/cfme-repositories.yml
-      vars:
-        cfme_repositories:
-          - rhel-7-server-rpms
-          - "cf-me-{{ ansible_local['cfme']['cfme_version_product'] }}-for-rhel-7-rpms"
-          - rhel-7-server-optional-rpms
-          - rhel-7-server-supplementary-rpms
-          - rhel-server-rhscl-7-rpms
-          - rhel-7-server-satellite-tools-6.2-rpms
-          - rhel-7-server-rhn-tools-rpms
-          - rhel-7-server-extras-rpms
+      include_tasks: tasks/repositories.yml
 
 - name: CFME | OS Update and Upgrade | Appliances Specific Preparation
   hosts: cfme-appliances

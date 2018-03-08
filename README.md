@@ -31,7 +31,7 @@ Performs a migration from CFME 5.8 to 5.9 utilizing steps from [Migrating to Red
 * cfme-appliancees
 * cfme-databases
 
-### cfme-rolling-os-update-and-upgrade.yml
+### rolling-os-update-and-upgrade.yml
 Performs an update/upgrade of all packages on the CFME appliances and performs a reboot if necessary.
 
 #### Required groups
