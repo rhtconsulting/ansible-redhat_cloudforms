@@ -16,6 +16,7 @@
     cfme_repositories:
       - rhel-7-server-rpms
       - rhel-server-rhscl-7-rpms
+      - rhel-7-server-extras-rpms
       - "cf-me-{{ cfme_version_product }}-for-rhel-7-rpms"
 
 - name: CFME | Configure Repositories | Enable Required Repositories
