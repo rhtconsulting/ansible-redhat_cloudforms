@@ -1,6 +1,9 @@
 ---
 - name: CFME | Configure Repositories | Incluide Tasks for Installing Custom Facts
   include_tasks: tasks/install-custom-facts.yml
+  
+- name: CFME | COnfigure Repositories | Setup (gather facts again)
+  setup:
 
 - name: CFME | Configure Repositories | Disable All
   command: "subscription-manager repos --disable='*'"
