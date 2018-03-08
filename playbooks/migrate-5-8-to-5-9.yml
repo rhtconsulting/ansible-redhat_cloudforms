@@ -4,7 +4,7 @@
   gather_facts: True
   tasks:
     - name: CFME | Migrate | Repositories
-      include_tasks: tasks/repositories.yml
+      include_tasks: tasks/configure-repositories.yml
       vars:
         cfme_version_product: 5.9
 
