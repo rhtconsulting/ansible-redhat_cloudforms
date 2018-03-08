@@ -105,4 +105,4 @@
     - name: CFME | Migrate | Restart evmserverd
       service:
         name: evmserverd
-        state: restart
+        state: restarted
