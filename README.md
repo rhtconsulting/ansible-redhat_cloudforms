@@ -59,3 +59,47 @@ Performs an update/upgrade of all packages on the CFME appliances and performs a
 | cfme_addiitonal_repositories | No       |         |         | Additional repositories to configure when performing the update
 | sat6_org_id                  | No       |         |         | Satellite 6 organization ID (when using activation key below)
 | sat6_activation_key          | No       |         |         | Satellite 6 activation key (instead of direct subscribe to repos)
+
+### smoke-test-service-provision.yml
+Smoke tests Service template provisioning and retirment.
+
+#### Required groups
+* cfme-ui-appliances
+
+#### Options
+| parameter                                 | required | default | comments
+|-------------------------------------------|----------|-------------------------------------------------------------------
+| cfme\_api\_user                           | Yes      |         | API user
+| cfme\_api\_password                       | Yes      |         | API password
+| cfme\_service\_catalog\_name              | Yes      |         | Service Catalog that contains the Service Tempalte to test
+| cfme\_service\_template\_name             | Yes      |         | Service Teamplte to test
+| cfme\_provision\_service\_dialog\_options | Yes      |         | Hash of dialog options to pass to the Service Template creation request
+| cfme\_provision\_service\_retries         | No       | 60      | Number of attempts at waiting for Provision Service task to complete
+| cfme\_provision\_service\_delay           | No       | 60      | Number of seconds between attempts at waiting for Provion Service task to complete
+
+### start-services.yml
+Start all of the DB services then all of the Appliance services.
+
+#### Required groups
+* cfme-appliancees
+* cfme-databases
+
+### stop-services.yml
+Stop all of the Appliance services then all of the DB services.
+
+#### Required groups
+* cfme-appliancees
+* cfme-databases
+
+### full-stop-start-services.yml
+Stop all of the Appliance services, then all of the DB services, then start all of the DB services, then all of the Appliance services, then perform a helath check.
+
+#### Required groups
+* cfme-appliancees
+* cfme-databases
+
+### health-check.yml
+Checks the health of the Appliances.
+
+#### Required groups
+* cfme-appliancees
