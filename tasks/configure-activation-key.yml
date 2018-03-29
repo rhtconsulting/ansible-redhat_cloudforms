@@ -2,11 +2,6 @@
 - name: CFME | Subscribe Using Activation Key | Incluide Tasks for Installing Custom Facts
   include_tasks: tasks/install-custom-facts.yml
 
-- name: CFME | Subscribe Using Activation Key | Set Satellite 6 Activation Key Name
-  set_fact:
-    sat6_activation_key: "{{ ansible_local['cfme']['sat6_activation_key'] }}"
-  when: sat6_activation_key is not defined
-
 - name: CFME | Subscribe Using Activation Key | Re-register Host With New Satellite 6 Activation Key
   redhat_subscription:
     state: present
