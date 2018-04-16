@@ -12,10 +12,8 @@
   when: "'cfme-databases' in group_names"
 
 - name: CFME | Update Packages | Latest
-  package:
-    name: '*'
-    state: latest
-    
+  command: "yum update -y --releasever={{ ansible_release_version }}"
+  
 - name: CFME | Update Packages | Include Tasks for Host Reboot
   include_tasks: tasks/host-reboot.yml
 
