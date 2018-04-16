@@ -8,7 +8,7 @@
       include_tasks: tasks/configure-repositories.yml
 
     - name: CFME | Rolling Update | Any package updates required?
-      command: 'yum check-update'
+      command: 'yum check-update --releasever={{ ansible_release_version }}'
       args:
         warn: no
       register: packages_need_update_result
