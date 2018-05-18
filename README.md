@@ -68,7 +68,7 @@ Smoke tests Service template provisioning and retirment.
 
 #### Options
 | parameter                                 | required | default | comments
-|-------------------------------------------|----------|-------------------------------------------------------------------
+|-------------------------------------------|----------|---------|----------------------------------------------------------
 | cfme\_api\_user                           | Yes      |         | API user
 | cfme\_api\_password                       | Yes      |         | API password
 | cfme\_service\_catalog\_name              | Yes      |         | Service Catalog that contains the Service Tempalte to test
@@ -76,6 +76,8 @@ Smoke tests Service template provisioning and retirment.
 | cfme\_provision\_service\_dialog\_options | Yes      |         | Hash of dialog options to pass to the Service Template creation request
 | cfme\_provision\_service\_retries         | No       | 60      | Number of attempts at waiting for Provision Service task to complete
 | cfme\_provision\_service\_delay           | No       | 60      | Number of seconds between attempts at waiting for Provion Service task to complete
+| cfme\_retire\_service\_retries            | No       | 60      | Number of attempts at waiting for Retire Service task to complete
+| cfme\_retire\_service\_delay              | No       | 60      | Number of seconds between attempts at waiting for Retire Service task to complete
 
 ### start-services.yml
 Start all of the DB services then all of the Appliance services.
@@ -103,3 +105,20 @@ Checks the health of the Appliances.
 
 #### Required groups
 * cfme-appliancees
+
+### gather-logs.yml
+Gathers relevant logs from all of the appliances and puts them in an archive on the first DB host. Optionally emails the archive.
+
+#### Required groups
+* cfme-databases
+
+#### Options
+| parameter                                 | required | default | comments
+|-------------------------------------------|----------|-------------------------------------------------------------------
+| cfme\_gather\_logs\_smtp\_host            | No       |         | SMTP host to send log archive email through. If not specified no email will be sent.
+| cfme\_gather\_logs\_smtp\_port            | No       |         | SMTP port to send log archive email through. If not specified no em
+    ail will be sent.
+| cfme\_gather\_logs\_email\_from           | No       |         | Email addresses to send the log archive email from. If not specified no em
+    ail will be sent.
+| cfme\_gather\_logs\_email\_to             | No       |         | Email addresses to send the log archive email to. If not specified no em
+    ail will be sent.
