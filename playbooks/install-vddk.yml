@@ -10,8 +10,9 @@
 
     - name: CFME | Install VDDK | Sync Folder to /usr/lib
       synchronize:
-        src: /tmp/vmware-vix-disklib-distrib
+        src: /tmp/vmware-vix-disklib-distrib/
         dest: /usr/lib/vmware-vix-disklib
+      delegate_to: "{{ inventory_hostname }}"
 
     - name: CFME | Install VDDK | Link libvixDiskLib.so
       file:
@@ -26,6 +27,11 @@
         dest: /usr/lib/libvixDiskLib.so.6
         state: link
       register: link_result_two
+
+    - name: CFME | Install VDDK | Clean Up /tmp
+      file:
+        path: /tmp/vmware-vix-disklib-distrib/
+        state: absent
 
     - name: CFME | Install VDDK | Run ldconfig
       command: 'ldconfig'
