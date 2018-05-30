@@ -3,10 +3,16 @@
   hosts: all
   gather_facts: True
   tasks:
+    - name: CFME | Install VDDK | Create Temp Directory
+      tempfile:
+        state: directory
+        prefix: vmware
+      register: tmp_dir
+
     - name: CFME | Install VDDK | Extract VDDK
       unarchive:
         src: "{{ cfme_vddk_path }}"
-        dest: /tmp/
+        dest: "{{ tmp_dir['path'] }}"
 
     - name: CFME | Install VDDK | Sync Folder to /usr/lib
       synchronize:
@@ -30,7 +36,7 @@
 
     - name: CFME | Install VDDK | Clean Up /tmp
       file:
-        path: /tmp/vmware-vix-disklib-distrib/
+        path: "{{ tmp_dir['path'] }}"
         state: absent
 
     - name: CFME | Install VDDK | Run ldconfig
