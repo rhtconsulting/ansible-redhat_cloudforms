@@ -117,7 +117,12 @@ Gathers relevant logs from all of the appliances and puts them in an archive on 
 ### install-vddk.yml
 Installs the VMware Virtual Disk Development Kit (VDDK).  This is required to enable Smart State Analysis (SSA) for VMware hosts.
 
+* You will need a VMware login to download the VDDK.  We do not provide this due to VMware licensing requirements.
+
 #### Options
 | parameter        | required | default | comments
 |------------------|----------|---------|--------------------------------------------------------------------
 | cfme\_vddk\_path | Yes      |         | This is the file path, on the control node, of the downloaded VDDK.
+
+### uninstall-vddk.yml
+Uninstalls the VMware Virtual Disk Development Kit (VDDK).  This can be utilized in conjunction with install-vddk.yml when an upgrade of the VDDK is required.
