@@ -1,0 +1,26 @@
+---
+- name: CFME | Install WebMKS SDK
+  hosts: all
+  gather_facts: True
+  tasks:
+    - name: CFME | Install WebMKS SDK | Create Temp Directory
+      tempfile:
+        state: directory
+        prefix: vmware
+      register: tmp_dir
+
+    - name: CFME | Install WebMKS SDK | Extract WebMKS SDK
+      unarchive:
+        src: "{{ cfme_webmks_sdk_path }}"
+        dest: "{{ tmp_dir['path'] }}/webmks/"
+
+    - name: CFME | Install WebMKS SDK | Sync Folder to /var/www/miq/vmdb/public/
+      synchronize:
+        src:  "{{ tmp_dir['path'] }}/webmks/"
+        dest: /var/www/miq/vmdb/public/
+      delegate_to: "{{ inventory_hostname }}"
+
+    - name: CFME | Install WebMKS SDK | Clean Up /tmp
+      file:
+        path: "{{ tmp_dir['path'] }}"
+        state: absent
