@@ -143,3 +143,5 @@ Installs the VMware HTML Console SDK.  This is required to enable WebMKS for VMw
 |------------------|----------|---------|--------------------------------------------------------------------
 | cfme\_webmks_sdk\_path | Yes      |         | This is the file path, on the control node, of the downloaded SDK.
 
+### uninstall-webmks-sdk.yml
+Removes the VMware HTML Console SDK.  This disables  WebMKS for VMware Console Support.
