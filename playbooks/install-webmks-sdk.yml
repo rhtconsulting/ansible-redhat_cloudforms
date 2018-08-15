@@ -36,6 +36,7 @@
           state: directory
           path: /var/www/miq/vmdb/public/webmks
           mode: 'a+rX'
+          recurse: True
 
       rescue:
 
