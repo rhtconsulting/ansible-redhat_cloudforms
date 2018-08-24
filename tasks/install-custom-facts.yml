@@ -1,5 +1,5 @@
 ---
-- name: CFME | Instll Custom Facts | Create /etc/ansible/facts.d
+- name: CFME | Install Custom Facts | Create /etc/ansible/facts.d
   file:
     state: directory
     recurse: True
