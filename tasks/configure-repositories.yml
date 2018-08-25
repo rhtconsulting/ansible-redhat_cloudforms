@@ -26,6 +26,6 @@
 
 - name: CFME | Configure Repositories | Enable Additional Repositories
   command: "subscription-manager repos --enable='{{ item }}'"
-  with_items: "{{ cfme_additonal_repositories }}"
+  with_items: "{{ cfme_additional_repositories }}"
   become: True
-  when: cfme_additonal_repositories is defined
+  when: cfme_additional_repositories is defined

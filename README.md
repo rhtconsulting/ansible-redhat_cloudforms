@@ -21,7 +21,7 @@ Performs a migration from CFME 5.7 to 5.8 utilizing steps from [Migrating to Red
 #### Options
 | parameter                    | required | default | choices | comments
 |------------------------------|----------|---------|---------|-------------------------------------------------------------------
-| cfme_additonal_repositories  | No       |         |         | Additional repositories to configure when performing the migration
+| cfme_additional_repositories | No       |         |         | Additional repositories to configure when performing the migration
 | sat6_org_id                  | No       |         |         | Satellite 6 organization ID (when using activation key below)
 | sat6_activation_key          | No       |         |         | Satellite 6 activation key (instead of direct subscribe to repos)
 
@@ -41,7 +41,7 @@ Performs a migration from CFME 5.8 to 5.9 utilizing steps from [Migrating to Red
 #### Options
 | parameter                    | required | default | choices | comments
 |------------------------------|----------|---------|---------|-------------------------------------------------------------------
-| cfme_additonal_repositories  | No       |         |         | Additional repositories to configure when performing the migration
+| cfme_additional_repositories | No       |         |         | Additional repositories to configure when performing the migration
 | sat6_org_id                  | No       |         |         | Satellite 6 organization ID (when using activation key below)
 | sat6_activation_key          | No       |         |         | Satellite 6 activation key (instead of direct subscribe to repos)
 
@@ -56,7 +56,7 @@ Performs an update/upgrade of all packages on the CFME appliances and performs a
 #### Options
 | parameter                    | required | default | choices | comments
 |------------------------------|----------|---------|---------|-------------------------------------------------------------------
-| cfme_additonal_repositories  | No       |         |         | Additional repositories to configure when performing the update
+| cfme_additional_repositories | No       |         |         | Additional repositories to configure when performing the update
 | sat6_org_id                  | No       |         |         | Satellite 6 organization ID (when using activation key below)
 | sat6_activation_key          | No       |         |         | Satellite 6 activation key (instead of direct subscribe to repos)
 
