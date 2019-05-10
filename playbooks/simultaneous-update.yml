@@ -30,9 +30,6 @@
       failed_when: packages_need_update_result.rc != 0 and packages_need_update_result.rc != 100
       when: releasever is undefined
 
-- name: CFME | Update | Stop All Services
-  import_playbook: stop-services.yml
-
 - name: CFME | Update | Update Databases
   hosts: cfme-databases
   become: True
@@ -50,9 +47,6 @@
     - name: CFME | Update | Include Tasks for Updating Packages
       include_tasks: tasks/update-packages.yml
       when: packages_need_update_result | changed
-
-- name: CFME | Update | Ensure all Services Started
-  import_playbook: start-services.yml
 
 - name: CFME | Update | wait for API to report ready
   import_playbook: health-check.yml
