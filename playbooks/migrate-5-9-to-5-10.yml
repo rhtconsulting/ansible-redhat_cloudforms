@@ -71,13 +71,23 @@
   tasks:
     - name: CFME | Migrate | rake db:migrate
       run_once: True
-      shell: "cd /var/www/miq/vmdb; rake db:migrate > >(tee /var/tmp/rake_db_migrate.out) 2> >(tee /var/tmp/rake_db_migrate.err >&2)"
+      shell: |-
+        source /etc/profile.d/evm.sh
+        cd /var/www/miq/vmdb
+        rake db:migrate > >(tee /var/tmp/rake_db_migrate.out) 2> >(tee /var/tmp/rake_db_migrate.err >&2)"
       async: 18000
       poll: 60
+      args:
+        executable: /bin/bash
 
     - name: CFME | Migrate | rake evm:automate:reset
       run_once: True
-      shell: "cd /var/www/miq/vmdb; rake evm:automate:reset > >(tee /var/tmp/evm_automate_reset.out) 2> >(tee /var/tmp/evm_automate_reset.err >&2)"
+      shell: |-
+        source /etc/profile.d/evm.sh
+        cd /var/www/miq/vmdb
+        rake evm:automate:reset > >(tee /var/tmp/evm_automate_reset.out) 2> >(tee /var/tmp/evm_automate_reset.err >&2)"
+      args:
+        executable: /bin/bash
 
 - name: CFME | Migrate | 5.9 to 5.10 | Post DB Migrate Restart
   hosts: cfme-databases
