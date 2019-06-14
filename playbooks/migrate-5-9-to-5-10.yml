@@ -11,7 +11,7 @@
     - name: CFME | Migrate | Subscribe Using Repositories
       include_tasks: tasks/configure-repositories.yml
       vars:
-        cfme_version_product: 5.10
+        cfme_version_product: '5.10'
       when: sat6_activation_key is not defined
 
 - name: CFME | Migrate | 5.9 to 5.10 | Appliances Specific Preparation
@@ -74,7 +74,7 @@
       shell: |-
         source /etc/profile.d/evm.sh
         cd /var/www/miq/vmdb
-        rake db:migrate > >(tee /var/tmp/rake_db_migrate.out) 2> >(tee /var/tmp/rake_db_migrate.err >&2)"
+        rake db:migrate > >(tee /var/tmp/rake_db_migrate.out) 2> >(tee /var/tmp/rake_db_migrate.err >&2)
       async: 18000
       poll: 60
       args:
@@ -85,7 +85,7 @@
       shell: |-
         source /etc/profile.d/evm.sh
         cd /var/www/miq/vmdb
-        rake evm:automate:reset > >(tee /var/tmp/evm_automate_reset.out) 2> >(tee /var/tmp/evm_automate_reset.err >&2)"
+        rake evm:automate:reset > >(tee /var/tmp/evm_automate_reset.out) 2> >(tee /var/tmp/evm_automate_reset.err >&2)
       args:
         executable: /bin/bash
 
@@ -108,3 +108,6 @@
       service:
         name: evmserverd
         state: restarted
+
+- name: CFME | Migrate | 5.9 to 5.10 | Wait for API to report ready
+  import_playbook: health-check.yml

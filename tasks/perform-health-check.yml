@@ -8,8 +8,7 @@
     timeout: 60
 
 - name: CFME | Health Check | Ping Check
-  local_action:
-    module: uri
+  uri:
     url: "https://{{ ansible_fqdn }}:443/ping"
     method: GET
     validate_certs: False
@@ -17,6 +16,6 @@
     return_content: Yes
   register: cfme_ping_check_result
   until: "cfme_ping_check_result['content'] is defined and cfme_ping_check_result['content'] == 'pong'"
-  retries: 60
+  retries: 600
   delay: 5
 
