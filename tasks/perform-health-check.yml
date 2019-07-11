@@ -5,7 +5,7 @@
     host: "{{ ansible_fqdn }}"
     port: 443
     state: started
-    timeout: 60
+    timeout: "{{ cfme_port_ready_timeout_seconds | default(600) }}"
 
 - name: CFME | Health Check | Ping Check
   uri:
@@ -16,6 +16,6 @@
     return_content: Yes
   register: cfme_ping_check_result
   until: "cfme_ping_check_result['content'] is defined and cfme_ping_check_result['content'] == 'pong'"
-  retries: 600
+  retries: "{{ cfme_healthcheck_retries | default(100) }}"
   delay: 5
 
